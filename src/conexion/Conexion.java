@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
     private final String Servidor = "localhost";
-    private final String Database = "PuntoDeVenta";
+    private final String Database = "PuntoFacil";
     private final String Usuario = "root";
     private final String Password = "";
     

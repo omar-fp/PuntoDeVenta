@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import modelo.ConsultasUsuario;
 import modelo.ModeloUsuario;
 import vista.VistaLogin;
+import vista.VistaPantallaPrincipal;
 
 /**
  * @since 04/06/2025
@@ -46,8 +47,7 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource()==VistaLogin.BtnLogin) {
-            buscarUsuarioPassword();
-            
+            buscarUsuarioPassWord();            
         }
     
     }
@@ -116,21 +116,30 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
         }
     }
     public boolean camposValidos() {
-        if (VistaLogin.TxtUsuario.getText().isEmpty() || VistaLogin.TxtPassword.getPassword().length==0)
+        if (VistaLogin.TxtUsuario.getText().isEmpty() || VistaLogin.TxtPassword.getPassword().length==0) {
             return false;
-        else
+        }else {
             return true;
+        }
     }
    private void llenarModeloConCampos(){
        ModeloUsuario.setId_usuario(VistaLogin.TxtUsuario.getText());
        ModeloUsuario.setPassword_usuario(new String(VistaLogin.TxtPassword.getPassword()));
+       ModeloUsuario.setNombre_usuario("");
+       ModeloUsuario.setRol_usuario("");
    }
-   private void buscarUsuarioPassword() {
+   private void buscarUsuarioPassWord() {
        if (camposValidos()==true) {
            llenarModeloConCampos();
            if (ConsultasUsuario.buscarLogin(ModeloUsuario)==true) {
                JOptionPane.showMessageDialog(null, "Bienvenido: "+ModeloUsuario.getNombre_usuario(),
                                                     "Rol: "+ModeloUsuario.getRol_usuario(),1);
+               
+               VistaLogin.dispose();
+               
+               VistaPantallaPrincipal VistaPantallaPrincipal = new VistaPantallaPrincipal();
+               ControladorVistaPantallaPrincipal ControladorVistaPantallaPrincipal = new 
+                              ControladorVistaPantallaPrincipal(VistaPantallaPrincipal);
            }else{
                JOptionPane.showMessageDialog(null, "Usuario o Password Incorrecta");
            }
