@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class ConsultasUsuario extends Conexion{
     Connection Con = getConexion();
     
-    public boolean buscarLogin(ModeloUsuario Modelo) throws SQLException {
+    public boolean buscarLogin(ModeloUsuario Modelo) {
         try {
             PreparedStatement Ps;
             String SQL = "select * from usuarios where id_usuario = ? and password ?";
@@ -29,7 +29,7 @@ public class ConsultasUsuario extends Conexion{
             ResultSet Rs = Ps.executeQuery();
             if (Rs.next()) {
                 Modelo.setNombre_usuario(Rs.getString("Nombre"));
-                Modelo.setRol_usuario(Rs.getString("rol"));
+                Modelo.setRol_usuario(Rs.getString("Rol"));
                 return true;
             }
                 return false;

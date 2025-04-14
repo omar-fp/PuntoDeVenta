@@ -7,6 +7,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import javax.swing.JOptionPane;
+import modelo.ModeloUsuario;
 import vista.VistaLogin;
 import vista.VistaSplash;
 
@@ -77,11 +79,13 @@ public class ControladorVistaSplash implements MouseListener, MouseMotionListene
         try {
             Thread.sleep(i*1000);
         } catch (InterruptedException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }finally{
             VistaSplash.dispose();
             
+            ModeloUsuario ModeloUsuario = new ModeloUsuario();
             VistaLogin VistaLogin = new VistaLogin();
-            ControladorVistaLogin ControladorVistaLogin = new ControladorVistaLogin(VistaLogin);
+            ControladorVistaLogin ControladorVistaLogin = new ControladorVistaLogin(VistaLogin, ModeloUsuario);
         }
     }
 }

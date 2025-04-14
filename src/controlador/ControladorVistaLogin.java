@@ -10,6 +10,9 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.JOptionPane;
+import modelo.ConsultasUsuario;
+import modelo.ModeloUsuario;
 import vista.VistaLogin;
 
 /**
@@ -19,14 +22,17 @@ import vista.VistaLogin;
  */
 public class ControladorVistaLogin implements MouseListener, MouseMotionListener, FocusListener{
     VistaLogin VistaLogin;
+    ModeloUsuario ModeloUsuario;
+    ConsultasUsuario ConsultasUsuario = new ConsultasUsuario();
     
     //Para que no se borre si se pone el mismo texto del campo
     boolean clicUser = true;
     boolean clicPass = true;
     
     
-    public ControladorVistaLogin (VistaLogin VistaLogin) {
+    public ControladorVistaLogin (VistaLogin VistaLogin, ModeloUsuario ModeloUsuario) {
         this.VistaLogin = VistaLogin;
+        this.ModeloUsuario = ModeloUsuario;
         oyentes();
         VistaLogin.setVisible(true);
     }
@@ -38,7 +44,13 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
     }
     
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource()==VistaLogin.BtnLogin) {
+            buscarUsuarioPassword();
+            
+        }
+    
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -103,4 +115,27 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
             }
         }
     }
+    public boolean camposValidos() {
+        if (VistaLogin.TxtUsuario.getText().isEmpty() || VistaLogin.TxtPassword.getPassword().length==0)
+            return false;
+        else
+            return true;
+    }
+   private void llenarModeloConCampos(){
+       ModeloUsuario.setId_usuario(VistaLogin.TxtUsuario.getText());
+       ModeloUsuario.setPassword_usuario(new String(VistaLogin.TxtPassword.getPassword()));
+   }
+   private void buscarUsuarioPassword() {
+       if (camposValidos()==true) {
+           llenarModeloConCampos();
+           if (ConsultasUsuario.buscarLogin(ModeloUsuario)==true) {
+               JOptionPane.showMessageDialog(null, "Bienvenido: "+ModeloUsuario.getNombre_usuario(),
+                                                    "Rol: "+ModeloUsuario.getRol_usuario(),1);
+           }else{
+               JOptionPane.showMessageDialog(null, "Usuario o Password Incorrecta");
+           }
+           }else{
+           JOptionPane.showMessageDialog(null, "Debes Colocar Texto en los campos Usuario y Password");
+       }
+   }
 }
