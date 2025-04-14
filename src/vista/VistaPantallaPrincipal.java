@@ -5,82 +5,88 @@
  */
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
 /**
- *
- * RikaSpark320
+ * @since 04/14/2025
+ * @author Omar Figueroa Perez
+ * @version 1.
  */
 public class VistaPantallaPrincipal extends JFrame{
-
-    public VistaPantallaPrincipal() {
-        setTitle("PuntoFácil");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800, 800);
-        setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
-
-        // título y usuario
-        JPanel panelSuperior = new JPanel(new BorderLayout());
-        JLabel titulo = new JLabel("PuntoFácil");
-        titulo.setFont(new Font("SansSerif", Font.BOLD, 50));
-        panelSuperior.add(titulo, BorderLayout.WEST);
-        titulo.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 10));
-
-        JPanel panelUsuario = new JPanel();
-        panelUsuario.add(new JLabel("Usuario:"));
-        JTextField campoUsuario = new JTextField(15);
-        campoUsuario.setEnabled(false);
-        panelUsuario.add(campoUsuario);
-        panelSuperior.add(panelUsuario, BorderLayout.EAST);
-        add(panelSuperior, BorderLayout.NORTH);
-
-        //botones
-        JPanel panelBotones = new JPanel(new GridLayout(4, 2, 15, 15));
-            panelBotones.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
-
-            Dimension tamBoton = new Dimension(300, 100); 
-
-            String[] textos = {
-                "Registrar Venta", "Facturación",
-                "Inventario", "Reportes",
-                "Registro de Producto", "Respaldo de datos", "Configuración General"
-            };
-
-            for (String texto : textos) {
-                JButton boton = new JButton(texto);
-                boton.setFont(new Font("SansSerif", Font.PLAIN, 18));
-                boton.setPreferredSize(tamBoton);
-                //para que se centren los botones
-                JPanel contenedor = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                contenedor.add(boton);
-                panelBotones.add(contenedor);
-            }
-
-        add(panelBotones, BorderLayout.CENTER);
-        //boton de vuelta
-        JPanel panelSalir = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton botonSalir = new JButton("\u21B6"); 
-        panelSalir.add(botonSalir);
-        add(panelSalir, BorderLayout.SOUTH);
-
-        setVisible(true);
+    //Botones con su imagen
+    public JButton BtnReporte = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_reporte.png")));
+    public JButton BtnVenta = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_venta.png")));
+    public JButton BtnInventario = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_inventario.png")));
+    public JButton BtnProducto = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_producto.png")));
+    //Texto de bienvenida
+    public JLabel Titulo = new JLabel("<html><center>BIENVENIDO<br><br>ver. 0.01</center></html>");
+    
+    //Fondo de psyduck
+    ImageIcon ImFondo = new ImageIcon(getClass().getResource("/imagenes/fondo_psyduck.png"));
+    JLabel LblFondo = new JLabel(ImFondo);
+    
+    public VistaPantallaPrincipal(){
+        configuracion();
+        botones();
+        texto();
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(VistaPantallaPrincipal::new);
+    private void configuracion() {
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setSize(ImFondo.getIconWidth(),ImFondo.getIconHeight());
+        this.setLocationRelativeTo(null);
+        this.setTitle("Punto Fácil");
+        this.setLayout(null);
+        this.setResizable(false);
+        this.setContentPane(LblFondo);
+    }
+
+    private void botones() {
+        //Posicion y tamaño de los botones
+        this.add(BtnReporte);
+        BtnReporte.setBounds(500, 60, 140, 100); 
+        BtnReporte.setBorderPainted(false);
+        BtnReporte.setContentAreaFilled(false);
+
+        this.add(BtnVenta);
+        BtnVenta.setBounds(500, 180, 140, 100);
+        BtnVenta.setBorderPainted(false);
+        BtnVenta.setContentAreaFilled(false);
+
+        this.add(BtnInventario);
+        BtnInventario.setBounds(500, 300, 140, 100);
+        BtnInventario.setBorderPainted(false);
+        BtnInventario.setContentAreaFilled(false);
+
+        this.add(BtnProducto);
+        BtnProducto.setBounds(500, 420, 140, 100);
+        BtnProducto.setBorderPainted(false);
+        BtnProducto.setContentAreaFilled(false);
     }
     
+    private void texto() {
+        this.add(Titulo);
+        Titulo.setFont(new Font("Arial", Font.BOLD,32));
+        Titulo.setBounds(100, 30, 400, 100);
+        
+        //Texto debajo de los Botones
+        BtnProducto.setText("Agregar Producto");
+        BtnProducto.setHorizontalTextPosition(JButton.CENTER);
+        BtnProducto.setVerticalTextPosition(JButton.BOTTOM);
+        
+        BtnReporte.setText("Reportes");
+        BtnReporte.setHorizontalTextPosition(JButton.CENTER);
+        BtnReporte.setVerticalTextPosition(JButton.BOTTOM);
+
+        BtnVenta.setText("Registrar Venta");
+        BtnVenta.setHorizontalTextPosition(JButton.CENTER);
+        BtnVenta.setVerticalTextPosition(JButton.BOTTOM);
+
+        BtnInventario.setText("Inventario");
+        BtnInventario.setHorizontalTextPosition(JButton.CENTER);
+        BtnInventario.setVerticalTextPosition(JButton.BOTTOM);
+    }
 }

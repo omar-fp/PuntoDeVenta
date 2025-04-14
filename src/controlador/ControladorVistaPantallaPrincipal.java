@@ -10,9 +10,10 @@ import vista.VistaPantallaPrincipal;
  * @author L13 YOGA
  */
 public class ControladorVistaPantallaPrincipal {
-    VistaPantallaPrincipal VPP;
-    public ControladorVistaPantallaPrincipal(VistaPantallaPrincipal VPP){
-        this.VPP = VPP;
-        this.VPP.setVisible(true);
+    VistaPantallaPrincipal VistaPantallaPrincipal;
+    
+    public ControladorVistaPantallaPrincipal(VistaPantallaPrincipal VistaPantallaPrincipal){
+        this.VistaPantallaPrincipal = VistaPantallaPrincipal;
+        this.VistaPantallaPrincipal.setVisible(true);
     }
 }
