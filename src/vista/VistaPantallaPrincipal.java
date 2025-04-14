@@ -16,18 +16,18 @@ import javax.swing.JLabel;
  * @version 1.
  */
 public class VistaPantallaPrincipal extends JFrame{
-    //Botones con su imagen
+    //Botones
     public JButton BtnReporte = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_reporte.png")));
     public JButton BtnVenta = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_venta.png")));
     public JButton BtnInventario = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_inventario.png")));
     public JButton BtnProducto = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_producto.png")));
-    //Texto de bienvenida
+    public JButton BtnSalir = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_salir.png")));
+    //Texto
     public JLabel Titulo = new JLabel("<html><center>BIENVENIDO<br><br>ver. 0.01</center></html>");
     
-    //Fondo de psyduck
+    //Fondo
     ImageIcon ImFondo = new ImageIcon(getClass().getResource("/imagenes/fondo_psyduck.png"));
     JLabel LblFondo = new JLabel(ImFondo);
-    
     public VistaPantallaPrincipal(){
         configuracion();
         botones();
@@ -42,12 +42,13 @@ public class VistaPantallaPrincipal extends JFrame{
         this.setLayout(null);
         this.setResizable(false);
         this.setContentPane(LblFondo);
+        // this.setUndecorated(true); Por si le quieren quitar la parte de arriba
     }
 
     private void botones() {
-        //Posicion y tamaño de los botones
+        
         this.add(BtnReporte);
-        BtnReporte.setBounds(500, 60, 140, 100); 
+        BtnReporte.setBounds(500, 60, 140, 100); // Tamaño cuadrado para íconos
         BtnReporte.setBorderPainted(false);
         BtnReporte.setContentAreaFilled(false);
 
@@ -65,6 +66,13 @@ public class VistaPantallaPrincipal extends JFrame{
         BtnProducto.setBounds(500, 420, 140, 100);
         BtnProducto.setBorderPainted(false);
         BtnProducto.setContentAreaFilled(false);
+        
+        this.add(BtnSalir);
+        BtnSalir.setBounds(710, 10, 80, 80);
+        BtnSalir.setBorderPainted(false);
+        BtnSalir.setContentAreaFilled(false);
+        
+        
     }
     
     private void texto() {
@@ -72,7 +80,7 @@ public class VistaPantallaPrincipal extends JFrame{
         Titulo.setFont(new Font("Arial", Font.BOLD,32));
         Titulo.setBounds(100, 30, 400, 100);
         
-        //Texto debajo de los Botones
+        //Botones
         BtnProducto.setText("Agregar Producto");
         BtnProducto.setHorizontalTextPosition(JButton.CENTER);
         BtnProducto.setVerticalTextPosition(JButton.BOTTOM);
@@ -88,5 +96,9 @@ public class VistaPantallaPrincipal extends JFrame{
         BtnInventario.setText("Inventario");
         BtnInventario.setHorizontalTextPosition(JButton.CENTER);
         BtnInventario.setVerticalTextPosition(JButton.BOTTOM);
+        
+        BtnSalir.setText("Salir");
+        BtnSalir.setHorizontalTextPosition(JButton.CENTER);
+        BtnSalir.setVerticalTextPosition(JButton.BOTTOM);
     }
 }
