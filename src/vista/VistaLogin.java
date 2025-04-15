@@ -97,7 +97,7 @@ public class VistaLogin extends JFrame {
         this.add(LblPassword);
         //Imagen de Revelar Contraseña
         LblVerPassword.setIcon(ImEyeC);
-        LblVerPassword.setBounds(480, 270, 64, 64);
+        LblVerPassword.setBounds(480, 290, 16, 32);
         this.add(LblVerPassword);
     }
 }

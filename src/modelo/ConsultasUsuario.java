@@ -21,14 +21,14 @@ public class ConsultasUsuario extends Conexion{
     public boolean buscarLogin(ModeloUsuario Modelo) {
         try {
             PreparedStatement Ps;
-            String SQL = "select * from usuarios where id_usuario = ? and password ?";
+            String SQL = "select * from usuarios where id_usuario = id_usuario and password_usuario = password_usuario ";
             Ps = Con.prepareCall(SQL);
             Ps.setString(1,Modelo.getId_usuario());
             Ps.setString(2,Modelo.getPassword_usuario());
             ResultSet Rs = Ps.executeQuery();
             if (Rs.next()) {
-                Modelo.setNombre_usuario(Rs.getString("Nombre"));
-                Modelo.setRol_usuario(Rs.getString("Rol"));
+                Modelo.setNombre_usuario(Rs.getString("nombre_usuario"));
+                Modelo.setRol_usuario(Rs.getString("rol_usuario"));
                 return true;
             }
                 return false;

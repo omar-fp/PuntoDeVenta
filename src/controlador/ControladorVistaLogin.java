@@ -5,6 +5,7 @@ Hola no quiero tupinche chuleta
  */
 package controlador;
 
+import java.awt.Cursor;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
@@ -42,6 +43,7 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
         VistaLogin.LblVerPassword.addMouseListener(this);
         VistaLogin.TxtPassword.addFocusListener(this);
         VistaLogin.TxtUsuario.addFocusListener(this);
+        VistaLogin.BtnLogin.addMouseListener(this);
     }
     
     @Override
@@ -63,13 +65,20 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
     @Override
     public void mouseReleased(MouseEvent e) {
         if (e.getSource() == VistaLogin.LblVerPassword) {
-        VistaLogin.TxtPassword.setEchoChar('●'); // Ocultar contraseña
+        VistaLogin.TxtPassword.setEchoChar('\u2022'); // Ocultar contraseña
         VistaLogin.LblVerPassword.setIcon(VistaLogin.ImEyeC); 
         }
     }
     
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+        if (e.getSource()==VistaLogin.LblVerPassword) {
+            VistaLogin.LblVerPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        }
+        if (e.getSource()==VistaLogin.BtnLogin) {
+            VistaLogin.BtnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        }
+    }
     @Override
     public void mouseExited(MouseEvent e) {}
     @Override
@@ -78,13 +87,13 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
     public void mouseMoved(MouseEvent e) {}
     
     @Override
-    public void focusGained(FocusEvent e) { //Esto si es robado
+    public void focusGained(FocusEvent e) { 
         if (e.getSource() == VistaLogin.TxtPassword) {
             String texto = String.valueOf(VistaLogin.TxtPassword.getPassword());
             
             if (clicPass && texto.equals("Contraseña")) {
                 VistaLogin.TxtPassword.setText("");
-                VistaLogin.TxtPassword.setEchoChar('●');
+                VistaLogin.TxtPassword.setEchoChar('\u2022');
                 clicPass = false;
             }
         }
@@ -97,8 +106,9 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
             }
         }
     }
+    
     @Override
-    public void focusLost(FocusEvent e) { //Esto tambien
+    public void focusLost(FocusEvent e) { //Esto si es robado
         if (e.getSource() == VistaLogin.TxtPassword) {
             String texto = String.valueOf(VistaLogin.TxtPassword.getPassword());
             if (texto.isEmpty()) {
@@ -134,12 +144,6 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
            if (ConsultasUsuario.buscarLogin(ModeloUsuario)==true) {
                JOptionPane.showMessageDialog(null, "Bienvenido: "+ModeloUsuario.getNombre_usuario(),
                                                     "Rol: "+ModeloUsuario.getRol_usuario(),1);
-               
-               VistaLogin.dispose();
-               
-               VistaPantallaPrincipal VistaPantallaPrincipal = new VistaPantallaPrincipal();
-               ControladorVistaPantallaPrincipal ControladorVistaPantallaPrincipal = new 
-                              ControladorVistaPantallaPrincipal(VistaPantallaPrincipal);
            }else{
                JOptionPane.showMessageDialog(null, "Usuario o Password Incorrecta");
            }
