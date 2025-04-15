@@ -6,8 +6,6 @@ Hola no quiero tupinche chuleta
 package controlador;
 
 import java.awt.Cursor;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -16,13 +14,12 @@ import modelo.ConsultasUsuario;
 import modelo.ModeloUsuario;
 import vista.VistaLogin;
 import vista.VistaPantallaPrincipal;
-
 /**
  * @since 04/06/2025
  * @author Omar Figueroa Perez
  * @version 1.
  */
-public class ControladorVistaLogin implements MouseListener, MouseMotionListener, FocusListener{
+public class ControladorVistaLogin implements MouseListener, MouseMotionListener{
     VistaLogin VistaLogin;
     ModeloUsuario ModeloUsuario;
     ConsultasUsuario ConsultasUsuario = new ConsultasUsuario();
@@ -41,18 +38,33 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
     
     private void oyentes() {
         VistaLogin.LblVerPassword.addMouseListener(this);
-        VistaLogin.TxtPassword.addFocusListener(this);
-        VistaLogin.TxtUsuario.addFocusListener(this);
-        VistaLogin.BtnLogin.addMouseListener(this);
+    VistaLogin.TxtPassword.addMouseListener(this); 
+    VistaLogin.TxtUsuario.addMouseListener(this);  
+    VistaLogin.BtnLogin.addMouseListener(this);
     }
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource()==VistaLogin.BtnLogin) {
-            buscarUsuarioPassWord();            
-        }
-    
+        if (e.getSource() == VistaLogin.BtnLogin) {
+        buscarUsuarioPassWord();
     }
+
+    if (e.getSource() == VistaLogin.TxtUsuario && clicUser) {
+        if (VistaLogin.TxtUsuario.getText().equals("Usuario")) {
+            VistaLogin.TxtUsuario.setText("");
+            clicUser = false;
+        }
+    }
+
+    if (e.getSource() == VistaLogin.TxtPassword && clicPass) {
+        String texto = String.valueOf(VistaLogin.TxtPassword.getPassword());
+        if (texto.equals("Contraseña")) {
+            VistaLogin.TxtPassword.setText("");
+            VistaLogin.TxtPassword.setEchoChar('\u2022');
+            clicPass = false;
+        }
+    }
+}
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -86,45 +98,7 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
     @Override
     public void mouseMoved(MouseEvent e) {}
     
-    @Override
-    public void focusGained(FocusEvent e) { 
-        if (e.getSource() == VistaLogin.TxtPassword) {
-            String texto = String.valueOf(VistaLogin.TxtPassword.getPassword());
-            
-            if (clicPass && texto.equals("Contraseña")) {
-                VistaLogin.TxtPassword.setText("");
-                VistaLogin.TxtPassword.setEchoChar('\u2022');
-                clicPass = false;
-            }
-        }
-        if (e.getSource() == VistaLogin.TxtUsuario) {
-            String texto = String.valueOf(VistaLogin.TxtUsuario.getText());
-            
-            if (clicUser&& texto.equals("Usuario")) {
-                VistaLogin.TxtUsuario.setText("");
-                clicUser = false;
-            }
-        }
-    }
-    
-    @Override
-    public void focusLost(FocusEvent e) { //Esto si es robado
-        if (e.getSource() == VistaLogin.TxtPassword) {
-            String texto = String.valueOf(VistaLogin.TxtPassword.getPassword());
-            if (texto.isEmpty()) {
-                VistaLogin.TxtPassword.setText("Contraseña");
-                VistaLogin.TxtPassword.setEchoChar((char) 0);
-                clicPass = true; 
-            }
-        }
-        if (e.getSource() == VistaLogin.TxtUsuario) {
-            String texto = VistaLogin.TxtUsuario.getText();
-            if (texto.isEmpty()) {
-                VistaLogin.TxtUsuario.setText("Usuario");
-                clicUser = true; 
-            }
-        }
-    }
+
     public boolean camposValidos() {
         if (VistaLogin.TxtUsuario.getText().isEmpty() || VistaLogin.TxtPassword.getPassword().length==0) {
             return false;
@@ -144,6 +118,12 @@ public class ControladorVistaLogin implements MouseListener, MouseMotionListener
            if (ConsultasUsuario.buscarLogin(ModeloUsuario)==true) {
                JOptionPane.showMessageDialog(null, "Bienvenido: "+ModeloUsuario.getNombre_usuario(),
                                                     "Rol: "+ModeloUsuario.getRol_usuario(),1);
+               
+               VistaLogin.dispose();
+               
+               VistaPantallaPrincipal VistaPantallaPrincipal = new VistaPantallaPrincipal();
+               ControladorVistaPantallaPrincipal ControladorVistaPantallaPrincipal = new
+                   ControladorVistaPantallaPrincipal(VistaPantallaPrincipal);
            }else{
                JOptionPane.showMessageDialog(null, "Usuario o Password Incorrecta");
            }
