@@ -10,14 +10,14 @@ package modelo;
  * @author Omar Figueroa Perez
  */
 public class ModeloProducto {
-    private String id_producto, nombre_producto, categoria, descripcion_producto;
+    private String id_producto, nombre_producto, categoria_producto, descripcion_producto;
     private float precio_producto;
     private int stock_producto;
 
-    public ModeloProducto(String id_producto, String nombre_producto, String categoria, String descripcion_producto, float precio_producto, int stock_producto) {
+    public ModeloProducto(String id_producto, String nombre_producto, String categoria_producto, String descripcion_producto, float precio_producto, int stock_producto) {
         this.id_producto = id_producto;
         this.nombre_producto = nombre_producto;
-        this.categoria = categoria;
+        this.categoria_producto = categoria_producto;
         this.descripcion_producto = descripcion_producto;
         this.precio_producto = precio_producto;
         this.stock_producto = stock_producto;
@@ -42,12 +42,12 @@ public class ModeloProducto {
         this.nombre_producto = nombre_producto;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getCategoria_producto() {
+        return categoria_producto;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setCategoria_producto(String categoria_producto) {
+        this.categoria_producto = categoria_producto;
     }
 
     public String getDescripcion_producto() {
