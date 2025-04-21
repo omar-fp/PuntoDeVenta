@@ -38,13 +38,13 @@ public class ConsultasProducto extends Conexion{
         try {
             PreparedStatement Ps;
             String SQL =
-                    "update productos set nombre_producto=?, categoria_producto=?, descripcion_producto=?, precio_producto=?, stock_producto=? where id_producto=?, ";
+                    "UPDATE productos SET nombre_producto=?, categoria_producto=?, descripcion_producto=?, precio_producto=?, stock_producto=? WHERE id_producto=?";
             Ps = Con.prepareCall(SQL);
             Ps.setString(1, Modelo.getNombre_producto());
             Ps.setString(2, Modelo.getCategoria_producto());
-            Ps.setFloat(3, Modelo.getPrecio_producto());
-            Ps.setInt(4, Modelo.getStock_producto());
-            Ps.setString(5, Modelo.getDescripcion_producto());
+            Ps.setString(3, Modelo.getDescripcion_producto());
+            Ps.setFloat(4, Modelo.getPrecio_producto());
+            Ps.setInt(5, Modelo.getStock_producto());      
             Ps.setString(6, Modelo.getId_producto());
             Ps.executeUpdate();
             return true;
@@ -73,7 +73,7 @@ public class ConsultasProducto extends Conexion{
         try {
             PreparedStatement Ps;
             String SQL =
-                    "SELECT * FROM productos where = id_producto=?";
+                   "SELECT * FROM productos WHERE id_producto=?";
             Ps = Con.prepareCall(SQL);
             Ps.setString(1, Modelo.getId_producto());
             ResultSet Rs = Ps.executeQuery();

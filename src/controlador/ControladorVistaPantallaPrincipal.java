@@ -7,8 +7,11 @@ package controlador;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import modelo.ModeloProducto;
 import vista.VistaPantallaPrincipal;
+import vista.VistaProducto;
 /**
  * @since 04/14/2025
  * @author Omar Figueroa Perez
@@ -37,8 +40,11 @@ public class ControladorVistaPantallaPrincipal implements MouseListener{
                     "Salir",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             if (opc==0) 
                 System.exit(0);
-            }else if(e.getSource()==VistaPantallaPrincipal.BtnProducto){ //FALTA RELLENAR
+            }else if(e.getSource()==VistaPantallaPrincipal.BtnProducto){
+            ModeloProducto ModeloProducto = new ModeloProducto();
+            VistaProducto VistaProducto = new VistaProducto(new JFrame(), true);
             
+            ControladorVistaProducto ControladorVistaProducto = new ControladorVistaProducto(ModeloProducto, VistaProducto);
             }else if(e.getSource()==VistaPantallaPrincipal.BtnVenta){
                 
             }else if(e.getSource()==VistaPantallaPrincipal.BtnReporte){    
