@@ -18,8 +18,6 @@ import javax.swing.JOptionPane;
  * @author Omar Figueroa Perez
  */
 
-
-// public ModeloVenta(String id_venta, String id_cliente, String id_usuario, String sucursal, float total, LocalDate Fecha) {
 public class ConsultasVenta extends Conexion{
     Connection Con = getConexion();
     
@@ -27,7 +25,7 @@ public class ConsultasVenta extends Conexion{
         try {
             PreparedStatement Ps;
             String SQL =
-                    "INSERT INTO venta (id_venta, id_cliente, id_usuario, sucursal, total, fecha) VALUES (?,?,?,?,?,?)";
+                    "INSERT INTO ventas (id_venta, id_cliente, id_usuario, sucursal, total, fecha) VALUES (?,?,?,?,?,?)";
             Ps = Con.prepareCall(SQL);
             Ps.setString(1, Modelo.getId_venta());
             Ps.setString(2, Modelo.getId_cliente());
@@ -47,7 +45,7 @@ public class ConsultasVenta extends Conexion{
     try {
         PreparedStatement Ps;
         String SQL =
-            "UPDATE venta SET id_cliente=?, id_usuario=?, sucursal=?, total=?, fecha=? WHERE id_venta=?";
+            "UPDATE ventas SET id_cliente=?, id_usuario=?, sucursal=?, total=?, fecha=? WHERE id_venta=?";
         Ps = Con.prepareCall(SQL);
         Ps.setString(1, Modelo.getId_cliente());
         Ps.setString(2, Modelo.getId_usuario());
@@ -66,7 +64,7 @@ public class ConsultasVenta extends Conexion{
     public boolean eliminar(ModeloVenta Modelo){
     try {
         PreparedStatement Ps;
-        String SQL = "DELETE FROM venta WHERE id_venta=?";
+        String SQL = "DELETE FROM ventas WHERE id_venta=?";
         Ps = Con.prepareCall(SQL);
         Ps.setString(1, Modelo.getId_venta());
         Ps.executeUpdate();
@@ -80,7 +78,7 @@ public class ConsultasVenta extends Conexion{
     public boolean buscar(ModeloVenta Modelo){
     try {
         PreparedStatement Ps;
-        String SQL = "SELECT * FROM venta WHERE id_venta=?";
+        String SQL = "SELECT * FROM ventas WHERE id_venta=?";
         Ps = Con.prepareCall(SQL);
         Ps.setString(1, Modelo.getId_venta());
         ResultSet Rs = Ps.executeQuery();
