@@ -9,9 +9,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import modelo.ModeloProducto;
 import vista.VistaPantallaPrincipal;
+
+//Entidad Producto
+import modelo.ModeloProducto;
 import vista.VistaProducto;
+
+//Entidad Venta
+import modelo.ModeloVenta;
+import vista.VistaVenta;
+
+
+
 /**
  * @since 04/14/2025
  * @author Omar Figueroa Perez
@@ -40,13 +49,19 @@ public class ControladorVistaPantallaPrincipal implements MouseListener{
                     "Salir",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
             if (opc==0) 
                 System.exit(0);
+            //Entidad Producto
             }else if(e.getSource()==VistaPantallaPrincipal.BtnProducto){
             ModeloProducto ModeloProducto = new ModeloProducto();
             VistaProducto VistaProducto = new VistaProducto(new JFrame(), true);
             
             ControladorVistaProducto ControladorVistaProducto = new ControladorVistaProducto(ModeloProducto, VistaProducto);
+            //Entidad Venta
             }else if(e.getSource()==VistaPantallaPrincipal.BtnVenta){
-                
+            ModeloVenta ModeloVenta = new ModeloVenta();
+            VistaVenta VistaVenta = new VistaVenta(new JFrame(), true);
+            
+            ControladorVistaVenta ControladorVistaVenta = new ControladorVistaVenta(ModeloVenta, VistaVenta); 
+            //Entidad Venta_Detalles
             }else if(e.getSource()==VistaPantallaPrincipal.BtnReporte){    
                 
             }else if(e.getSource()==VistaPantallaPrincipal.BtnInventario){    

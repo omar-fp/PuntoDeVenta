@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class ModeloVenta {
     private String id_venta, id_cliente, id_usuario, sucursal;
     private float total;
-    private LocalDate Fecha;
+    private LocalDate fecha;
 
     public ModeloVenta(String id_venta, String id_cliente, String id_usuario, String sucursal, float total, LocalDate Fecha) {
         this.id_venta = id_venta;
@@ -22,7 +22,7 @@ public class ModeloVenta {
         this.id_usuario = id_usuario;
         this.sucursal = sucursal;
         this.total = total;
-        this.Fecha = Fecha;
+        this.fecha = Fecha;
     }
 
     public ModeloVenta() {
@@ -69,11 +69,11 @@ public class ModeloVenta {
     }
 
     public LocalDate getFecha() {
-        return Fecha;
+        return fecha;
     }
 
     public void setFecha(LocalDate Fecha) {
-        this.Fecha = Fecha;
+        this.fecha = Fecha;
     }
     
     
