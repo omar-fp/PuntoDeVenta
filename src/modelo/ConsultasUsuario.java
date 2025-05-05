@@ -47,7 +47,7 @@ public class ConsultasUsuario extends Conexion{
             ps.setString(1, modelo.getId_usuario());
             ps.setString(2, modelo.getNombre_usuario());
             ps.setString(3, modelo.getApellido_usuario());
-            ps.setString(4, (modelo.getPassword_usuario()));
+            ps.setString(4, modelo.getPassword_usuario());
             ps.setString(5, modelo.getDecripcion_usuario());
             ps.setString(6, modelo.getRol_usuario());
             ps.executeUpdate();

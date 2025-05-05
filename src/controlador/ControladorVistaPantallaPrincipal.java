@@ -55,12 +55,15 @@ public class ControladorVistaPantallaPrincipal implements MouseListener{
             VistaProducto VistaProducto = new VistaProducto(new JFrame(), true);
             
             ControladorVistaProducto ControladorVistaProducto = new ControladorVistaProducto(ModeloProducto, VistaProducto);
+            
+            
             //Entidad Venta
             }else if(e.getSource()==VistaPantallaPrincipal.BtnVenta){
             ModeloVenta ModeloVenta = new ModeloVenta();
             VistaVenta VistaVenta = new VistaVenta(new JFrame(), true);
             
             ControladorVistaVenta ControladorVistaVenta = new ControladorVistaVenta(ModeloVenta, VistaVenta); 
+            
             //Entidad Venta_Detalles
             }else if(e.getSource()==VistaPantallaPrincipal.BtnReporte){    
                 
