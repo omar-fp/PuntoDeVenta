@@ -11,9 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import utilidades.Utilidades;
+
 /**
  *
  * @author Omar Figueroa Perez
@@ -30,7 +28,6 @@ public class ConsultasUsuario extends Conexion{
             Ps = Con.prepareCall(SQL);
             Ps.setString(1,Modelo.getId_usuario());
             Ps.setString(2,Modelo.getPassword_usuario());
-            Ps.setString(4, Utilidades.encriptarPassword(Modelo.getPassword_usuario()));
             ResultSet Rs = Ps.executeQuery();
             if (Rs.next()) {
                 Modelo.setNombre_usuario(Rs.getString("nombre_usuario"));
@@ -50,7 +47,7 @@ public class ConsultasUsuario extends Conexion{
             ps.setString(1, modelo.getId_usuario());
             ps.setString(2, modelo.getNombre_usuario());
             ps.setString(3, modelo.getApellido_usuario());
-            ps.setString(4, Utilidades.encriptarPassword(modelo.getPassword_usuario()));
+            ps.setString(4, modelo.getPassword_usuario());
             ps.setString(5, modelo.getDecripcion_usuario());
             ps.setString(6, modelo.getRol_usuario());
             ps.executeUpdate();
@@ -77,7 +74,7 @@ public class ConsultasUsuario extends Conexion{
         try (PreparedStatement ps = Con.prepareStatement(sql)) {
             ps.setString(1, modelo.getNombre_usuario());
             ps.setString(2, modelo.getApellido_usuario());
-            ps.setString(3, Utilidades.encriptarPassword(modelo.getPassword_usuario())); // Encriptar
+            ps.setString(3, (modelo.getPassword_usuario())); 
             ps.setString(4, modelo.getDecripcion_usuario());
             ps.setString(5, modelo.getRol_usuario());
             ps.setString(6, modelo.getId_usuario());

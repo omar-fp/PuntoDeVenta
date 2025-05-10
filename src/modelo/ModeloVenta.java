@@ -4,25 +4,21 @@
  * and open the template in the editor.
  */
 package modelo;
-
-import java.time.LocalDate;
-
 /**
  *
  * @author Omar Figueroa Perez
  */
 public class ModeloVenta {
-    private String id_venta, id_cliente, id_usuario, sucursal;
+    private String id_venta, id_cliente, id_usuario, sucursal, metodo_pago;
     private float total;
-    private LocalDate Fecha;
 
-    public ModeloVenta(String id_venta, String id_cliente, String id_usuario, String sucursal, float total, LocalDate Fecha) {
+    public ModeloVenta(String id_venta, String id_cliente, String id_usuario, String sucursal, String metodo_pago, float total) {
         this.id_venta = id_venta;
         this.id_cliente = id_cliente;
         this.id_usuario = id_usuario;
         this.sucursal = sucursal;
+        this.metodo_pago = metodo_pago;
         this.total = total;
-        this.Fecha = Fecha;
     }
 
     public ModeloVenta() {
@@ -60,20 +56,20 @@ public class ModeloVenta {
         this.sucursal = sucursal;
     }
 
+    public String getMetodo_pago() {
+        return metodo_pago;
+    }
+
+    public void setMetodo_pago(String metodo_pago) {
+        this.metodo_pago = metodo_pago;
+    }
+
     public float getTotal() {
         return total;
     }
 
     public void setTotal(float total) {
         this.total = total;
-    }
-
-    public LocalDate getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(LocalDate Fecha) {
-        this.Fecha = Fecha;
     }
     
     
