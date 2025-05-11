@@ -1,5 +1,5 @@
 package vista;
-/* Elimina este comentario, hay otro al final
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,6 +14,9 @@ public class vistaUsuario extends JFrame {
     // Campos de texto
     public JTextField TxtId = new JTextField();
     public JTextField TxtNombre = new JTextField();
+    public JTextField TxtApellido = new JTextField();
+    public JTextField TxtDescripcion = new JTextField();
+    public JTextField TxtRol = new JTextField();
     public JTextField TxtUsuario = new JTextField();
     public JPasswordField TxtPassword = new JPasswordField();
 
@@ -21,7 +24,7 @@ public class vistaUsuario extends JFrame {
     ImageIcon ImFondo = new ImageIcon(getClass().getResource("/imagenes/fondoUsuarios.jpg"));
     JLabel LblFondo = new JLabel(ImFondo);
 
-    public VistaUsuario() {
+    public vistaUsuario() {
         configuracion();
         agregarComponentes();
     }
@@ -38,21 +41,29 @@ public class vistaUsuario extends JFrame {
 
     private void agregarComponentes() {
         // Campos
-        TxtId.setBounds(150, 50, 200, 30);
+        TxtId.setBounds(150, 50, 200, 50);
         TxtId.setBorder(BorderFactory.createTitledBorder("ID Usuario"));
         this.add(TxtId);
 
-        TxtNombre.setBounds(150, 100, 200, 30);
+        TxtNombre.setBounds(150, 100, 200, 50);
         TxtNombre.setBorder(BorderFactory.createTitledBorder("Nombre"));
         this.add(TxtNombre);
 
-        TxtUsuario.setBounds(150, 150, 200, 30);
-        TxtUsuario.setBorder(BorderFactory.createTitledBorder("Usuario"));
-        this.add(TxtUsuario);
-
-        TxtPassword.setBounds(150, 200, 200, 30);
+        TxtPassword.setBounds(150, 200, 200, 50);
         TxtPassword.setBorder(BorderFactory.createTitledBorder("Contraseña"));
         this.add(TxtPassword);
+
+        TxtApellido.setBounds(400, 100, 200, 50);
+        TxtApellido.setBorder(BorderFactory.createTitledBorder("Apellido"));
+        this.add(TxtApellido);
+
+        TxtDescripcion.setBounds(150, 150, 200, 50);
+        TxtDescripcion.setBorder(BorderFactory.createTitledBorder("Descripcion"));
+        this.add(TxtDescripcion);
+
+        TxtRol.setBounds(400, 150, 200, 50);
+        TxtRol.setBorder(BorderFactory.createTitledBorder("Rol de usuario"));
+        this.add(TxtRol);
 
         // Botones
         BtnGuardar.setBounds(100, 260, 100, 30);
@@ -71,4 +82,3 @@ public class vistaUsuario extends JFrame {
         this.add(BtnSalir);
     }
 }
- */

@@ -14,7 +14,8 @@ public class VistaSplash extends JFrame{
     ImageIcon ImSplash = new ImageIcon(getClass().getResource("/imagenes/psyduck-sinfondo.gif"));
     //Esta etiqueta es la que se agregará al JFrame, con la imanen neko arc incrustada
     public JLabel LblSplash = new JLabel(ImSplash);
-    
+
+
     public VistaSplash(){
         configuracion();
         agregarComponentes();

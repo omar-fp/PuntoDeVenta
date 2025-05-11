@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 public class VistaPantallaPrincipal extends JFrame{
     //Botones
     public JButton BtnReporte = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_reporte.png")));
+    public JButton BtnUsuario = new JButton(new ImageIcon(getClass().getResource("/imagenes/usuario.png")));
     public JButton BtnVenta = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_venta.png")));
     public JButton BtnInventario = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_inventario.png")));
     public JButton BtnProducto = new JButton(new ImageIcon(getClass().getResource("/imagenes/icono_producto.png")));
@@ -52,6 +53,11 @@ public class VistaPantallaPrincipal extends JFrame{
         BtnReporte.setBorderPainted(false);
         BtnReporte.setContentAreaFilled(false);
 
+        this.add(BtnUsuario);
+        BtnUsuario.setBounds(300, 60, 140, 100); // Tamaño cuadrado para íconos
+        BtnUsuario.setBorderPainted(false);
+        BtnUsuario.setContentAreaFilled(false);
+
         this.add(BtnVenta);
         BtnVenta.setBounds(500, 180, 140, 100);
         BtnVenta.setBorderPainted(false);
@@ -84,7 +90,11 @@ public class VistaPantallaPrincipal extends JFrame{
         BtnProducto.setText("Agregar Producto");
         BtnProducto.setHorizontalTextPosition(JButton.CENTER);
         BtnProducto.setVerticalTextPosition(JButton.BOTTOM);
-        
+
+        BtnUsuario.setText("Agregar Usuario");
+        BtnUsuario.setHorizontalTextPosition(JButton.CENTER);
+        BtnUsuario.setVerticalTextPosition(JButton.BOTTOM);
+
         BtnReporte.setText("Reportes");
         BtnReporte.setHorizontalTextPosition(JButton.CENTER);
         BtnReporte.setVerticalTextPosition(JButton.BOTTOM);
